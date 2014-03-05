@@ -1,0 +1,1 @@
+This file structure and sequence is used for test method "DirectoryScannerTest.testScanDirectory()", do not modify !
