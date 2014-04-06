@@ -8,7 +8,7 @@
 		<relativePath>../SimpleParentPom/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>indexer</artifactId>
+	<artifactId>simple-indexer</artifactId>
 	<name>SimpleIndexer</name>
 	<description>Gather the minimum of lib to add Lucene for some simple toolbox</description>
 
@@ -26,7 +26,7 @@
 		<!-- Internal domain dependencies -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>scan</artifactId>
+			<artifactId>simple-scan</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 

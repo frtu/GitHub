@@ -8,7 +8,7 @@
 		<relativePath>../SimpleParentPom/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>scan</artifactId>
+	<artifactId>simple-scan</artifactId>
 	<name>SimpleScanner</name>
 	<description>Gather the minimum of lib to add Directory scan for some simple toolbox</description>
 </project>
