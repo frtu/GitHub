@@ -1,4 +1,4 @@
-package org.frtu.lucene.simple;
+package org.frtu.simple.lucene;
 import java.io.File;
 import java.io.IOException;
 

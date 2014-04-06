@@ -1,4 +1,4 @@
-package org.frtu.scan.simple;
+package org.frtu.simple.scan;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -6,6 +6,9 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.util.ArrayList;
 
+import org.frtu.simple.scan.DirectoryScanner;
+import org.frtu.simple.scan.FileScannerObserver;
+import org.frtu.simple.scan.SelectiveFileScannerObserver;
 import org.junit.Test;
 
 public class DirectoryScannerTest {
