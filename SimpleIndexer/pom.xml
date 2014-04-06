@@ -1,19 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.frtu.simple</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	<parent>
+		<groupId>org.frtu.simple</groupId>
+		<artifactId>simple-pom</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../SimpleParentPom/pom.xml</relativePath>
+	</parent>
 
 	<artifactId>indexer</artifactId>
 	<name>SimpleIndexer</name>
 	<description>Gather the minimum of lib to add Lucene for some simple toolbox</description>
 
 	<properties>
-		<jdk.version>1.6</jdk.version>
-		<slf4j.version>1.7.5</slf4j.version>
-		<logback.version>1.0.13</logback.version>
-		<junit.version>4.11</junit.version>
-
 		<commons-io.version>2.4</commons-io.version>
 		<commons-codec.version>1.7</commons-codec.version>
 		<commons-compress.version>1.7</commons-compress.version>
@@ -24,6 +23,13 @@
 
 
 	<dependencies>
+		<!-- Internal domain dependencies -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>scan</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- commons libs -->
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -75,7 +81,6 @@
 			<version>${tika.version}</version>
 		</dependency>
 
-
 		<!-- Lucene -->
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
@@ -91,6 +96,17 @@
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-queryparser</artifactId>
 			<version>${solr.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-facet</artifactId>
+			<version>${solr.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search</artifactId>
+			<version>5.0.0.Alpha2</version>
 		</dependency>
 
 		<!-- SolR -->
@@ -125,68 +141,10 @@
 		<!-- </exclusion> -->
 		<!-- </exclusions> -->
 		<!-- </dependency> -->
-
-		<!-- Logs -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jul-to-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>log4j-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- TEST -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- JDK version -->
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-					<author>Frederic TU</author>
-					<encoding>UTF-8</encoding>
-					<show>private</show>
-					<nohelp>true</nohelp>
-				</configuration>
-			</plugin>
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
