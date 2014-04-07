@@ -1,4 +1,5 @@
 package org.frtu.simple.lucene;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -17,8 +18,8 @@ import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
 public class LuceneHandlerFactory {
-	public final static Version DEFAULT_LUCENE_VERSION = Version.LUCENE_47;
-	
+	public final static Version DEFAULT_LUCENE_VERSION = Version.LUCENE_40;
+
 	private Directory indexDirectory;
 	private Version luceneVersion = DEFAULT_LUCENE_VERSION;
 
@@ -33,7 +34,7 @@ public class LuceneHandlerFactory {
 	 * Create an index at the indicated folder
 	 * 
 	 * @param indexFolderPath
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public LuceneHandlerFactory(String indexFolderPath) throws IOException {
 		this(new File(indexFolderPath));
@@ -47,7 +48,7 @@ public class LuceneHandlerFactory {
 		super();
 		this.indexDirectory = indexDirectory;
 	}
-	
+
 	public Version getLuceneVersion() {
 		return luceneVersion;
 	}
@@ -72,11 +73,15 @@ public class LuceneHandlerFactory {
 		StandardAnalyzer analyzer = new StandardAnalyzer(luceneVersion);
 		return analyzer;
 	}
-	
+
+	public IndexHandler buildIndexHandler(OpenMode openMode) {
+		return new IndexHandler(indexDirectory, buildIndexWriterConfig(openMode));
+	}
+
 	public IndexHandler buildIndexHandler() {
 		return new IndexHandler(indexDirectory, buildIndexWriterConfig());
 	}
-	
+
 	IndexSearcher buildIndexSearcher() {
 		IndexReader directoryReader;
 		try {
@@ -92,7 +97,7 @@ public class LuceneHandlerFactory {
 		Query query = new QueryParser(luceneVersion, fieldName, buildAnalyzer()).parse(querystr);
 		return query;
 	}
-	
+
 	public SearchHandler buildSearchHandler() {
 		return new SearchHandler(this, buildIndexSearcher());
 	}

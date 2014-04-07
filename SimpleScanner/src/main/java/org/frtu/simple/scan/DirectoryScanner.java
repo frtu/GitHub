@@ -1,11 +1,13 @@
 package org.frtu.simple.scan;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
+import org.frtu.simple.scan.filters.ExtensionFilenameFilter;
+import org.frtu.simple.scan.observers.CululativeFileScannerObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +19,8 @@ import org.slf4j.LoggerFactory;
 public class DirectoryScanner {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
+	private FileFilter fileFilter;
+
 	/** Scan all files */
 	private List<FileScannerObserver> fileScanners = new ArrayList<FileScannerObserver>();
 
@@ -26,6 +30,30 @@ public class DirectoryScanner {
 	public DirectoryScanner(FileScannerObserver fileScanner) {
 		super();
 		this.addFileScanner(fileScanner);
+	}
+
+	/**
+	 * Easy way to set all the extension file you want to filter.
+	 * 
+	 * Note : Every time this method is called, the previous file extension is removed ! Call is concurrent with setFileFilter(), last call
+	 * wins !
+	 * 
+	 * @param extensions
+	 */
+	public void setFileExtensionToFilter(String... extensions) {
+		this.fileFilter = new ExtensionFilenameFilter(extensions);
+	}
+
+	/**
+	 * Set a file filtering rule.
+	 * 
+	 * Note : Every time this method is called, the previous file extension is removed ! Call is concurrent with setFileFilter(), last call
+	 * wins !
+	 * 
+	 * @param fileFilter
+	 */
+	public void setFileFilter(FileFilter fileFilter) {
+		this.fileFilter = fileFilter;
 	}
 
 	public void addFileScanner(FileScannerObserver fileScanner) {
@@ -42,17 +70,13 @@ public class DirectoryScanner {
 	 * @param directoryToScan
 	 */
 	public void scanDirectory(File directoryToScan) {
-		scanDirectory(directoryToScan, null);
-	}
-
-	/**
-	 * 
-	 * @param directoryToScan
-	 * @param folderToSkip
-	 */
-	public void scanDirectory(File directoryToScan, Set<String> folderToSkip) {
 		logger.debug("Currently indexing directory={}", directoryToScan.getAbsoluteFile());
-		File[] files = directoryToScan.listFiles();
+		File[] files;
+		if (fileFilter != null) {
+			files = directoryToScan.listFiles(fileFilter);
+		} else {
+			files = directoryToScan.listFiles();
+		}
 		if (files != null) {
 			ArrayList<File> folderBuffered = null;
 
@@ -72,28 +96,39 @@ public class DirectoryScanner {
 
 			if (folderBuffered != null) {
 				for (File file : folderBuffered) {
-					dealWithFolder(folderToSkip, file);
+					dealWithFolder(file);
 				}
 			}
 		}
 	}
 
 	/**
+	 * Util method that allow to scan all files in a folder. Works in cooperation with {@link #setFileFilter(FileFilter)} or
+	 * {@link #setFileExtensionToFilter(String...)}
+	 * 
+	 * @param directoryToScan
+	 * @return
+	 */
+	public ArrayList<File> scanAllFiles(File directoryToScan) {
+		CululativeFileScannerObserver fileScanner = new CululativeFileScannerObserver();
+		
+		DirectoryScanner directoryScanner = new DirectoryScanner(fileScanner);
+		for (FileScannerObserver fileScannerObserver : fileScanners) {
+			directoryScanner.addFileScanner(fileScannerObserver);
+		}
+		directoryScanner.setFileFilter(this.fileFilter);
+		directoryScanner.scanDirectory(directoryToScan);
+		return fileScanner.getResults();
+	}
+
+	/**
 	 * Check whether the folder should be scanned recursively
 	 * 
-	 * @param folderToSkip
 	 * @param file
 	 */
-	private void dealWithFolder(Set<String> folderToSkip, File file) {
-		String folderName = file.getName();
-		if (folderToSkip == null
-				|| (!folderToSkip.contains(folderName) && !folderName.contains(".ear") && !folderName.contains(".war") && !folderName
-						.contains(".jar"))) {
-			// Logger and scan logic is already in the recursivity
-			scanDirectory(file, folderToSkip);
-		} else {
-			logger.debug("This folder was skip:{}", file.getAbsolutePath());
-		}
+	private void dealWithFolder(File file) {
+		// Can add folder logic here
+		scanDirectory(file);
 	}
 
 	/**

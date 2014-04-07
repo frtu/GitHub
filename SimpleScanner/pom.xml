@@ -11,4 +11,12 @@
 	<artifactId>simple-scan</artifactId>
 	<name>SimpleScanner</name>
 	<description>Gather the minimum of lib to add Directory scan for some simple toolbox</description>
+
+	<dependencies>
+		<!-- commons libs -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+	</dependencies>
 </project>

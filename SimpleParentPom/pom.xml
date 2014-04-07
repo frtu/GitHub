@@ -27,7 +27,8 @@
 		<junit.version>4.11</junit.version>
 
 		<commons-io.version>2.4</commons-io.version>
-		<lucene.version>4.7.0</lucene.version>
+		<spring.version>3.1.0.RELEASE</spring.version>
+		<lucene.version>4.0.0</lucene.version>
 	</properties>
 
 	<dependencies>
@@ -58,6 +59,13 @@
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
 				<version>${commons-io.version}</version>
+			</dependency>
+
+			<!-- Spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
 
 			<!-- Logs -->
