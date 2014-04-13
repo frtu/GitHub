@@ -3,6 +3,7 @@ package org.frtu.simple.lucene;
 import java.io.IOException;
 
 import org.apache.lucene.document.Document;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.Collector;
 import org.apache.lucene.search.IndexSearcher;
@@ -19,6 +20,12 @@ public class SearchHandler {
 		super();
 		this.luceneHandlerFactory = luceneHandlerFactory;
 		this.searcher = searcher;
+	}
+
+	public int getMaxDoc() throws IOException {
+		IndexReader indexReader = searcher.getIndexReader();
+		int maxDoc = indexReader.maxDoc();
+		return maxDoc;
 	}
 
 	public Document getDocById(int docId) throws IOException {
