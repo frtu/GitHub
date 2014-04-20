@@ -19,6 +19,8 @@ import org.springframework.util.StringUtils;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class AudioItem extends MediaItem {
+	private static final String UNKNOWN = "UNKNOWN";
+
 	// xmpDM:album
 	private String album;
 	// title
@@ -67,7 +69,7 @@ public class AudioItem extends MediaItem {
 
 	public AudioItem(Document document) {
 		super(document.get("fileAbsolutePath"));
-		
+
 		this.album = document.get("album");
 		this.title = document.get("title");
 		this.artist = document.get("artist");
@@ -81,7 +83,7 @@ public class AudioItem extends MediaItem {
 		this.trackNumber = document.get("trackNumber");
 		this.comment = document.get("comment");
 	}
-	
+
 	public Document toLuceneDocument() {
 		Document doc = new Document();
 		doc.add(new StringField("fileAbsolutePath", getFileAbsolutePath(), Field.Store.YES));
@@ -99,55 +101,55 @@ public class AudioItem extends MediaItem {
 		doc.add(new TextField("releaseDate", getReleaseDate(), Field.Store.YES));
 		doc.add(new TextField("trackNumber", getTrackNumber(), Field.Store.YES));
 		doc.add(new TextField("comment", getComment(), Field.Store.YES));
-		
+
 		return doc;
 	}
 
 	public String getAlbum() {
-		return !StringUtils.hasText(album) ? "" : album;
+		return !StringUtils.hasText(album) ? UNKNOWN : album;
 	}
 
 	public String getTitle() {
-		return !StringUtils.hasText(title) ? "" : title;
+		return !StringUtils.hasText(title) ? UNKNOWN : ("no title".equals(title) ? UNKNOWN : title);
 	}
 
 	public String getArtist() {
-		return !StringUtils.hasText(artist) ? "" : artist;
+		return !StringUtils.hasText(artist) ? UNKNOWN : artist;
 	}
 
 	public String getComposer() {
-		return !StringUtils.hasText(composer) ? "" : composer;
+		return !StringUtils.hasText(composer) ? UNKNOWN : composer;
 	}
 
 	public String getGenre() {
-		return !StringUtils.hasText(genre) ? "" : genre;
+		return !StringUtils.hasText(genre) ? UNKNOWN : genre;
 	}
 
 	public String getDuration() {
-		return !StringUtils.hasText(duration) ? "" : duration;
+		return !StringUtils.hasText(duration) ? UNKNOWN : duration;
 	}
 
 	public String getAudioChannel() {
-		return !StringUtils.hasText(audioChannel) ? "" : audioChannel;
+		return !StringUtils.hasText(audioChannel) ? UNKNOWN : audioChannel;
 	}
 
 	public String getCompression() {
-		return !StringUtils.hasText(compression) ? "" : compression;
+		return !StringUtils.hasText(compression) ? UNKNOWN : compression;
 	}
 
 	public String getSampleRate() {
-		return !StringUtils.hasText(sampleRate) ? "" : sampleRate;
+		return !StringUtils.hasText(sampleRate) ? UNKNOWN : sampleRate;
 	}
 
 	public String getReleaseDate() {
-		return !StringUtils.hasText(releaseDate) ? "" : releaseDate;
+		return !StringUtils.hasText(releaseDate) ? UNKNOWN : releaseDate;
 	}
 
 	public String getTrackNumber() {
-		return !StringUtils.hasText(trackNumber) ? "" : trackNumber;
+		return !StringUtils.hasText(trackNumber) ? UNKNOWN : trackNumber;
 	}
 
 	public String getComment() {
-		return !StringUtils.hasText(comment) ? "" : comment;
+		return !StringUtils.hasText(comment) ? UNKNOWN : comment;
 	}
 }
