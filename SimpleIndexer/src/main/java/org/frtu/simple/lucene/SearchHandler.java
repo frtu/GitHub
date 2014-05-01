@@ -22,14 +22,19 @@ public class SearchHandler {
 		this.searcher = searcher;
 	}
 
-	public int getMaxDoc() throws IOException {
+	public int getMaxDoc() {
 		IndexReader indexReader = searcher.getIndexReader();
 		int maxDoc = indexReader.maxDoc();
 		return maxDoc;
 	}
 
-	public Document getDocById(int docId) throws IOException {
-		Document document = searcher.doc(docId);
+	public Document getDocById(int docId) {
+		Document document;
+		try {
+			document = searcher.doc(docId);
+		} catch (IOException e) {
+			throw new IllegalStateException("Cannot read doc from searcher with docId=" + docId, e);
+		}
 		return document;
 	}
 
@@ -38,7 +43,7 @@ public class SearchHandler {
 		searcher.search(query, collector);
 		return collector;
 	}
-	
+
 	public ScoreDoc[] searchDocByTopScore(String fieldName, String querystr, int hitsPerPage) throws ParseException, IOException {
 		TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage, true);
 		search(fieldName, querystr, collector);

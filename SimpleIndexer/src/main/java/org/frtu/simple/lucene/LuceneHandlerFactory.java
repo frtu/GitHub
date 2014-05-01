@@ -36,12 +36,17 @@ public class LuceneHandlerFactory {
 	 * @param indexFolderPath
 	 * @throws IOException
 	 */
-	public LuceneHandlerFactory(String indexFolderPath) throws IOException {
+	public LuceneHandlerFactory(String indexFolderPath) {
 		this(new File(indexFolderPath));
 	}
 
-	public LuceneHandlerFactory(File indexFolder) throws IOException {
-		this(FSDirectory.open(indexFolder));
+	public LuceneHandlerFactory(File indexFolder) {
+		super();
+		try {
+			this.indexDirectory = FSDirectory.open(indexFolder);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Cannot create/read index directory at location:" + indexFolder.getAbsolutePath(), e);
+		}
 	}
 
 	private LuceneHandlerFactory(Directory indexDirectory) {
