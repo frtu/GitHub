@@ -1,4 +1,4 @@
-package org.frtu.simple.tika.catalog;
+package org.frtu.simple.catalog;
 
 import java.io.File;
 import java.io.PrintStream;
