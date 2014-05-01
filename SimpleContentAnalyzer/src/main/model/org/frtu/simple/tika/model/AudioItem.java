@@ -2,6 +2,8 @@ package org.frtu.simple.tika.model;
 
 import java.io.File;
 
+import javax.persistence.Id;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,6 +22,10 @@ import org.springframework.util.StringUtils;
 @EqualsAndHashCode(callSuper = true)
 public class AudioItem extends MediaItem {
 	private static final String UNKNOWN = "UNKNOWN";
+
+	@Id
+	// Lucene persistence id
+	private int docId;
 
 	// xmpDM:album
 	private String album;
@@ -67,9 +73,10 @@ public class AudioItem extends MediaItem {
 		this.comment = metadata.get(XMPDM.LOG_COMMENT);
 	}
 
-	public AudioItem(Document document) {
+	public AudioItem(int docId, Document document) {
 		super(document.get("fileAbsolutePath"));
 
+		this.docId = docId;
 		this.album = document.get("album");
 		this.title = document.get("title");
 		this.artist = document.get("artist");
