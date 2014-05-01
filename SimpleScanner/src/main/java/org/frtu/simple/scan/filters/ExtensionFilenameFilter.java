@@ -24,9 +24,9 @@ public class ExtensionFilenameFilter implements FileFilter {
 		for (String extension : extensions) {
 			String filteredExtension = extension;
 			if (extension.contains(".")) {
-				filteredExtension = FilenameUtils.getExtension(extension).toLowerCase();
+				filteredExtension = FilenameUtils.getExtension(extension);
 			}
-			acceptedFileExtension.add(filteredExtension);
+			acceptedFileExtension.add(filteredExtension.toLowerCase());
 		}
 	}
 
