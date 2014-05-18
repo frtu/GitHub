@@ -1,0 +1,14 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.frtu.simple</groupId>
+		<artifactId>simple-pom</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../SimpleParentPom/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>simple-helpers</artifactId>
+	<name>SimpleHelpers</name>
+	<description>Provide a set of classes that have very few dependencies that you can embedded easily into any application</description>
+</project>
