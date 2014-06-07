@@ -11,18 +11,12 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-import org.apache.tika.metadata.Metadata;
-import org.apache.tika.metadata.TikaCoreProperties;
-import org.apache.tika.metadata.XMPDM;
 import org.hibernate.search.annotations.Indexed;
-import org.springframework.util.StringUtils;
 
 @Indexed(index = "indexes/audio")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class AudioItem extends MediaItem {
-	private static final String UNKNOWN = "UNKNOWN";
-
 	@Id
 	// Lucene persistence id
 	private int docId;
@@ -41,6 +35,7 @@ public class AudioItem extends MediaItem {
 	private String genre;
 
 	// xmpDM:duration
+	/** Duration time in millisec */
 	private String duration;
 
 	// xmpDM:audioChannelType
@@ -48,6 +43,7 @@ public class AudioItem extends MediaItem {
 	// xmpDM:audioCompressor
 	private String compression;
 	// xmpDM:audioSampleRate
+	/** In Hz */
 	private String sampleRate;
 
 	// xmpDM:releaseDate
@@ -57,20 +53,8 @@ public class AudioItem extends MediaItem {
 	// xmpDM:logComment
 	private String comment;
 
-	public AudioItem(File file, Metadata metadata) {
-		super(file, metadata);
-		this.album = metadata.get(XMPDM.ALBUM);
-		this.title = metadata.get(TikaCoreProperties.TITLE);
-		this.artist = metadata.get(XMPDM.ARTIST);
-		this.composer = metadata.get(XMPDM.COMPOSER);
-		this.genre = metadata.get(XMPDM.GENRE);
-		this.duration = metadata.get(XMPDM.DURATION);
-		this.audioChannel = metadata.get(XMPDM.AUDIO_CHANNEL_TYPE);
-		this.compression = metadata.get(XMPDM.AUDIO_COMPRESSOR);
-		this.sampleRate = metadata.get(XMPDM.AUDIO_SAMPLE_RATE);
-		this.releaseDate = metadata.get(XMPDM.RELEASE_DATE);
-		this.trackNumber = metadata.get(XMPDM.TRACK_NUMBER);
-		this.comment = metadata.get(XMPDM.LOG_COMMENT);
+	public AudioItem(File file) {
+		super(file);
 	}
 
 	public AudioItem(int docId, Document document) {
@@ -113,50 +97,53 @@ public class AudioItem extends MediaItem {
 	}
 
 	public String getAlbum() {
-		return !StringUtils.hasText(album) ? UNKNOWN : album;
+		return getNonNullValue(album, MediaItem.UNKNOWN);
 	}
 
 	public String getTitle() {
-		return !StringUtils.hasText(title) ? UNKNOWN : ("no title".equals(title) ? UNKNOWN : title);
+		if ("no title".equals(title)) {
+			return MediaItem.UNKNOWN;
+		}
+		return getNonNullValue(title, MediaItem.UNKNOWN);
 	}
 
 	public String getArtist() {
-		return !StringUtils.hasText(artist) ? UNKNOWN : artist;
+		return getNonNullValue(artist, MediaItem.UNKNOWN);
 	}
 
 	public String getComposer() {
-		return !StringUtils.hasText(composer) ? UNKNOWN : composer;
+		return getNonNullValue(composer, MediaItem.UNKNOWN);
 	}
 
 	public String getGenre() {
-		return !StringUtils.hasText(genre) ? UNKNOWN : genre;
+		return getNonNullValue(genre, MediaItem.UNKNOWN);
 	}
 
 	public String getDuration() {
-		return !StringUtils.hasText(duration) ? UNKNOWN : duration;
+		return getNonNullValue(duration, MediaItem.UNKNOWN);
 	}
 
 	public String getAudioChannel() {
-		return !StringUtils.hasText(audioChannel) ? UNKNOWN : audioChannel;
+		return getNonNullValue(audioChannel, MediaItem.UNKNOWN);
 	}
 
 	public String getCompression() {
-		return !StringUtils.hasText(compression) ? UNKNOWN : compression;
+		return getNonNullValue(compression, MediaItem.UNKNOWN);
 	}
 
 	public String getSampleRate() {
-		return !StringUtils.hasText(sampleRate) ? UNKNOWN : sampleRate;
+		return getNonNullValue(sampleRate, MediaItem.UNKNOWN);
 	}
 
 	public String getReleaseDate() {
-		return !StringUtils.hasText(releaseDate) ? UNKNOWN : releaseDate;
+		return getNonNullValue(releaseDate, MediaItem.UNKNOWN);
 	}
 
 	public String getTrackNumber() {
-		return !StringUtils.hasText(trackNumber) ? UNKNOWN : trackNumber;
+		return getNonNullValue(trackNumber, MediaItem.UNKNOWN);
 	}
 
 	public String getComment() {
-		return !StringUtils.hasText(comment) ? UNKNOWN : comment;
+		return getNonNullValue(comment, MediaItem.UNKNOWN);
 	}
 }

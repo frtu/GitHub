@@ -4,7 +4,7 @@ import java.io.File;
 
 import lombok.Data;
 
-import org.apache.tika.metadata.Metadata;
+import org.springframework.util.StringUtils;
 
 /**
  * Basic class that link a File to a Media's metadata.
@@ -19,7 +19,7 @@ class MediaItem {
 	private String fileName;
 	private long fileSize;
 
-	private Metadata metadata;
+	static final String UNKNOWN = "UNKNOWN";
 
 	public MediaItem(String fileAbsolutePath) {
 		this(new File(fileAbsolutePath));
@@ -34,8 +34,7 @@ class MediaItem {
 		this.fileSize = file.length();
 	}
 
-	public MediaItem(File file, Metadata metadata) {
-		this(file);
-		this.metadata = metadata;
+	protected String getNonNullValue(String value, String defaultValue) {
+		return !StringUtils.hasText(value) ? defaultValue : value;
 	}
 }

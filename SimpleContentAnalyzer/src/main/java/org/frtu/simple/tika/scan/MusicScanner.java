@@ -12,26 +12,32 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.tika.Tika;
 import org.apache.tika.metadata.Metadata;
+import org.apache.tika.metadata.TikaCoreProperties;
+import org.apache.tika.metadata.XMPDM;
 import org.frtu.simple.lucene.IndexHandler;
 import org.frtu.simple.lucene.IndexHandler.IndexWriterCallback;
 import org.frtu.simple.lucene.LuceneHandlerFactory;
 import org.frtu.simple.lucene.SearchHandler;
-import org.frtu.simple.scan.DirectoryScanner;
-import org.frtu.simple.scan.FileScannerObserver;
 import org.frtu.simple.tika.model.AudioItem;
+
+import com.github.frtu.simple.scan.DirectoryScanner;
+import com.github.frtu.simple.scan.FileScannerObserver;
 
 public class MusicScanner {
 	private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(MusicScanner.class);
 
 	public static void main(String[] args) throws IOException {
 		// File mediaFolder = new File("M:\\[iTunes Library]\\Music");
-		File mediaFolder = new File("C:\\_Media_\\Music");
-		// File mediaFolder = new File("\\\\NAS-FRED\\Various\\Music");
-
+		 File mediaFolder = new File("C:\\_Media_\\Music");
+//		File mediaFolder = new File("C:\\_Media_\\_Classe_");
+//		File mediaFolder = new File("\\\\NAS-FRED\\Multimedia\\Music");
+//		File mediaFolder = new File("D:\\[_Backup_]\\Music");
+		 
+		 
 		final List<AudioItem> listAudio = scanFolder(mediaFolder);
 		File indexDirectory = new File("target/audio_indexes");
 		buildIndex(indexDirectory, listAudio);
-		
+
 		final List<AudioItem> readlistAudio = readIndex(indexDirectory);
 		System.out.println(readlistAudio);
 	}
@@ -70,6 +76,23 @@ public class MusicScanner {
 		});
 	}
 
+	private static AudioItem toAudioItem(File file, Metadata metadata) {
+		AudioItem audioItem = new AudioItem(file);
+		audioItem.setAlbum(metadata.get(XMPDM.ALBUM));
+		audioItem.setTitle(metadata.get(TikaCoreProperties.TITLE));
+		audioItem.setArtist(metadata.get(XMPDM.ARTIST));
+		audioItem.setComposer(metadata.get(XMPDM.COMPOSER));
+		audioItem.setGenre(metadata.get(XMPDM.GENRE));
+		audioItem.setDuration(metadata.get(XMPDM.DURATION));
+		audioItem.setAudioChannel(metadata.get(XMPDM.AUDIO_CHANNEL_TYPE));
+		audioItem.setCompression(metadata.get(XMPDM.AUDIO_COMPRESSOR));
+		audioItem.setSampleRate(metadata.get(XMPDM.AUDIO_SAMPLE_RATE));
+		audioItem.setReleaseDate(metadata.get(XMPDM.RELEASE_DATE));
+		audioItem.setTrackNumber(metadata.get(XMPDM.TRACK_NUMBER));
+		audioItem.setComment(metadata.get(XMPDM.LOG_COMMENT));
+		return audioItem;
+	}
+	
 	public static List<AudioItem> scanFolder(File mediaFolder) {
 		final List<AudioItem> listAudio = new ArrayList<AudioItem>();
 
@@ -81,8 +104,8 @@ public class MusicScanner {
 					InputStream input = new FileInputStream(file);
 					Metadata metadata = new Metadata();
 					new Tika().parse(input, metadata);
-
-					AudioItem audioItem = new AudioItem(file, metadata);
+					
+					AudioItem audioItem = toAudioItem(file, metadata);
 					listAudio.add(audioItem);
 
 					if (logger.isDebugEnabled()) {

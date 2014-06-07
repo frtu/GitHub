@@ -23,6 +23,12 @@
 
 
 	<dependencies>
+		<dependency>
+			<groupId>com.mpatric</groupId>
+			<artifactId>mp3agic</artifactId>
+			<version>0.8.2</version>
+		</dependency>
+
 		<!-- Internal domain dependencies -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -64,6 +70,11 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search</artifactId>
 			<version>5.0.0.Alpha2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-solr</artifactId>
+			<version>1.1.2.RELEASE</version>
 		</dependency>
 
 		<!-- Tika -->
@@ -154,7 +165,6 @@
 			</exclusions>
 		</dependency>
 
-
 		<!-- Lucene -->
 		<!-- <dependency> -->
 		<!-- <groupId>org.apache.lucene</groupId> -->
@@ -176,6 +186,13 @@
 		<!-- <artifactId>lucene-facet</artifactId> -->
 		<!-- <version>${lucene.version}</version> -->
 		<!-- </dependency> -->
+
+
+		<dependency>
+			<groupId>com.googlecode.mp4parser</groupId>
+			<artifactId>isoparser</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -21,7 +21,7 @@ public class SunJdkHelper {
 			targetLibPath.append(currentLibPath);
 		}
 
-		logger.debug("Setting new {} to '{}'", JAVA_LIBRARY_PATH, targetLibPath);
+		logger.info("Setting new {} to '{}'", JAVA_LIBRARY_PATH, targetLibPath);
 		System.setProperty(JAVA_LIBRARY_PATH, targetLibPath.toString());
 
 		resetJavaLibraryPath();
