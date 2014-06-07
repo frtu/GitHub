@@ -10,7 +10,7 @@
 
 	<groupId>com.github.frtu.simple</groupId>
 	<artifactId>simple-pom</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Simple Toolbox</name>
@@ -49,13 +49,12 @@
 		</developer>
 	</developers>
 
-	<scm>
-		<url>https://github.com/frtu/SimpleToolbox/</url>
-		<connection>scm:git:git://github.com/frtu/SimpleToolbox.git/</connection>
-		<developerConnection>scm:git:github.com:frtu/SimpleToolbox.git</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
-
+    <scm>
+        <connection>scm:git:git@github.com:frtu/SimpleToolbox.git</connection>
+        <url>scm:git:git@github.com:frtu/SimpleToolbox.git</url>
+        <developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git</developerConnection>
+    </scm>
+    
 	<distributionManagement>
 		<snapshotRepository>
 			<id>sonatype-nexus-snapshots</id>
