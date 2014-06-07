@@ -1,4 +1,4 @@
-package org.frtu.simple.scan;
+package com.github.frtu.simple.scan;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -7,8 +7,11 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.util.ArrayList;
 
-import org.frtu.simple.scan.observers.CululativeFileScannerObserver;
 import org.junit.Test;
+
+import com.github.frtu.simple.scan.DirectoryScanner;
+import com.github.frtu.simple.scan.SelectiveFileScannerObserver;
+import com.github.frtu.simple.scan.observers.CumulativeFileScannerObserver;
 
 public class DirectoryScannerTest {
 	public static final File DIRECTORY = new File("src/test/resources/test_sequence");
@@ -29,7 +32,7 @@ public class DirectoryScannerTest {
 
 	@Test
 	public void testScanDirectoryWithFileScanner() {
-		CululativeFileScannerObserver fileScanner = new CululativeFileScannerObserver();
+		CumulativeFileScannerObserver fileScanner = new CumulativeFileScannerObserver();
 		DirectoryScanner directoryScanner = new DirectoryScanner(fileScanner);
 		directoryScanner.setFileExtensionToFilter("xml", "json");
 		directoryScanner.scanDirectory(DIRECTORY);
@@ -45,7 +48,7 @@ public class DirectoryScannerTest {
 
 	@Test
 	public void testScanDirectory() {
-		CululativeFileScannerObserver fileScanner = new CululativeFileScannerObserver();
+		CumulativeFileScannerObserver fileScanner = new CumulativeFileScannerObserver();
 		DirectoryScanner directoryScanner = new DirectoryScanner(fileScanner);
 		directoryScanner.scanDirectory(DIRECTORY);
 

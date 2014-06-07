@@ -1,4 +1,4 @@
-package org.frtu.simple.scan;
+package com.github.frtu.simple.scan;
 
 /**
  * File listener that listen to only on file name. Should be used with {@link DirectoryScanner}

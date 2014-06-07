@@ -1,4 +1,4 @@
-package org.frtu.simple.scan;
+package com.github.frtu.simple.scan;
 
 import java.io.File;
 

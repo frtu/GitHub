@@ -1,4 +1,4 @@
-package org.frtu.simple.scan.filters;
+package com.github.frtu.simple.scan.filters;
 
 import java.io.File;
 import java.io.FileFilter;

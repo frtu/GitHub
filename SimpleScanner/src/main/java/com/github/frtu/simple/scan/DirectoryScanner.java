@@ -1,4 +1,4 @@
-package org.frtu.simple.scan;
+package com.github.frtu.simple.scan;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.frtu.simple.scan.filters.ExtensionFilenameFilter;
-import org.frtu.simple.scan.observers.CululativeFileScannerObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.github.frtu.simple.scan.filters.ExtensionFilenameFilter;
+import com.github.frtu.simple.scan.observers.CumulativeFileScannerObserver;
 
 /**
  * This class is a directory scanner support.
@@ -110,7 +111,7 @@ public class DirectoryScanner {
 	 * @return
 	 */
 	public ArrayList<File> scanAllFiles(File directoryToScan) {
-		CululativeFileScannerObserver fileScanner = new CululativeFileScannerObserver();
+		CumulativeFileScannerObserver fileScanner = new CumulativeFileScannerObserver();
 		
 		DirectoryScanner directoryScanner = new DirectoryScanner(fileScanner);
 		for (FileScannerObserver fileScannerObserver : fileScanners) {
