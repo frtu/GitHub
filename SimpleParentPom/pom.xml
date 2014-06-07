@@ -52,7 +52,7 @@
 	<scm>
 		<url>https://github.com/frtu/SimpleToolbox/</url>
 		<connection>scm:git:git://github.com/frtu/SimpleToolbox.git/</connection>
-		<developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git</developerConnection>
+		<developerConnection>scm:git:github.com:frtu/SimpleToolbox.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
