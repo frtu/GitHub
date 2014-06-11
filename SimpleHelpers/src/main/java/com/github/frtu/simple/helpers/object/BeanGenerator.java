@@ -19,7 +19,7 @@ public class BeanGenerator {
 
     private static ObjectMapper objectMapper = new ObjectMapper();
 
-    private static <T> T generateBean(Class<T> clazz) {
+    public static <T> T generateBean(Class<T> clazz) {
         T object;
         try {
             object = ConstructorUtils.invokeConstructor(clazz, (Object[]) null);
@@ -35,7 +35,7 @@ public class BeanGenerator {
         return object;
     }
 
-    private static <T> T generatePopulatedBean(Class<T> clazz) {
+    public static <T> T generatePopulatedBean(Class<T> clazz) {
         final T object = generateBean(clazz);
 
         FieldCallback fc = new FieldCallback() {
