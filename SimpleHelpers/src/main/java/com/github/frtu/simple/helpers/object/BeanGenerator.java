@@ -10,6 +10,7 @@ import javax.xml.bind.Marshaller;
 
 import org.apache.commons.lang3.reflect.ConstructorUtils;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ObjectWriter;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.ReflectionUtils.FieldCallback;
 
@@ -55,24 +56,38 @@ public class BeanGenerator {
     }
 
     public static <T> String getJSONSampleFromString(Class<T> clazz) {
+        return getJSONSampleFromString(clazz, false);
+    }
+
+    public static <T> String getJSONSampleFromString(Class<T> clazz, boolean prettyPrint) {
         T classSampleObj = generatePopulatedBean(clazz);
         try {
-            String toString = objectMapper.writeValueAsString(classSampleObj);
-            return toString;
+            String result;
+            if (prettyPrint) {
+                ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
+                result = objectWriter.writeValueAsString(classSampleObj);
+            } else {
+                result = objectMapper.writeValueAsString(classSampleObj);
+            }
+            return result;
         } catch (IOException e) {
             throw new IllegalArgumentException("Impossible to serialize to JSON class=" + clazz.getCanonicalName(), e);
         }
     }
 
     public static <T> String getXMLSampleFromString(Class<T> clazz) {
+        return getXMLSampleFromString(clazz, false);
+    }
+
+    public static <T> String getXMLSampleFromString(Class<T> clazz, boolean prettyPrint) {
         T classSampleObj = generatePopulatedBean(clazz);
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            // output pretty printed
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
+            if (prettyPrint) {
+                // output pretty printed
+                jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            }
             StringWriter stringWriter = new StringWriter();
             jaxbMarshaller.marshal(classSampleObj, stringWriter);
 
