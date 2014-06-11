@@ -2,13 +2,33 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.frtu.simple</groupId>
+		<groupId>com.github.frtu.simple</groupId>
 		<artifactId>simple-pom</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.2</version>
 		<relativePath>../SimpleParentPom/pom.xml</relativePath>
 	</parent>
 
 	<artifactId>simple-helpers</artifactId>
 	<name>SimpleHelpers</name>
 	<description>Provide a set of classes that have very few dependencies that you can embedded easily into any application</description>
+
+	<dependencies>
+		<!-- Apache commons -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<!-- Object mapping -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+		</dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+	</dependencies>
 </project>

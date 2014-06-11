@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- sonatype parent pom -->
@@ -30,8 +31,11 @@
 		<logback.version>1.0.13</logback.version>
 		<junit.version>4.11</junit.version>
 
+		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>2.4</commons-io.version>
+		
 		<spring.version>3.1.0.RELEASE</spring.version>
+		<org.codehaus.jackson.version>1.9.9</org.codehaus.jackson.version>
 	</properties>
 
 	<licenses>
@@ -49,12 +53,12 @@
 		</developer>
 	</developers>
 
-    <scm>
-        <connection>scm:git:git@github.com:frtu/SimpleToolbox.git</connection>
-        <url>scm:git:git@github.com:frtu/SimpleToolbox.git</url>
-        <developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git</developerConnection>
-    </scm>
-    
+	<scm>
+		<connection>scm:git:git@github.com:frtu/SimpleToolbox.git</connection>
+		<url>scm:git:git@github.com:frtu/SimpleToolbox.git</url>
+		<developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git</developerConnection>
+	</scm>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>sonatype-nexus-snapshots</id>
@@ -105,6 +109,11 @@
 		<dependencies>
 			<!-- commons libs -->
 			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
 				<version>${commons-io.version}</version>
@@ -121,6 +130,13 @@
 						<groupId>commons-logging</groupId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+
+			<!-- Object mapping -->
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${org.codehaus.jackson.version}</version>
 			</dependency>
 
 			<!-- Logs -->
