@@ -10,7 +10,7 @@
 
 	<groupId>com.github.frtu.simple</groupId>
 	<artifactId>simple-pom</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Simple Toolbox</name>
@@ -55,7 +55,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:frtu/SimpleToolbox.git</connection>
 		<url>scm:git:git@github.com:frtu/SimpleToolbox.git</url>
-		<developerConnection>scm:git:ssh://git@github.com/frtu/SimpleToolbox.git</developerConnection>
+		<developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git</developerConnection>
 	  <tag>0.0.4f</tag>
   </scm>
 
@@ -231,7 +231,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>2.1</version>
 				<configuration>
 					<arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
 				</configuration>
