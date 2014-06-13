@@ -10,7 +10,7 @@
 
 	<groupId>com.github.frtu.simple</groupId>
 	<artifactId>simple-pom</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Simple Toolbox</name>
@@ -18,7 +18,7 @@
 	<url>https://github.com/frtu/SimpleToolbox/</url>
 
 	<modules>
-		<module>../SimpleScanner</module>
+		<module>SimpleScanner</module>
 	</modules>
 
 	<properties>
