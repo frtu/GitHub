@@ -17,6 +17,40 @@
 	<description>Toolbox of lightweight design of generic usage with minimal of dependencies. You keep the control of your design.</description>
 	<url>https://github.com/frtu/SimpleToolbox/</url>
 
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>scm:git:git@github.com:frtu/SimpleToolbox.git</url>
+		<connection>scm:git:git@github.com:frtu/SimpleToolbox.git</connection>
+		<developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<name>Frédéric TU</name>
+			<email>frederic.tu@gmail.com</email>
+		</developer>
+	</developers>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus snapshot repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Sonatype Nexus release repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
 	<modules>
 		<module>SimpleScanner</module>
 	</modules>
@@ -36,41 +70,6 @@
 		<spring.version>3.1.0.RELEASE</spring.version>
 		<org.codehaus.jackson.version>1.9.9</org.codehaus.jackson.version>
 	</properties>
-
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-
-	<developers>
-		<developer>
-			<name>Frédéric TU</name>
-			<email>frederic.tu@gmail.com</email>
-		</developer>
-	</developers>
-
-	<scm>
-		<connection>scm:git:git@github.com:frtu/SimpleToolbox.git</connection>
-		<url>scm:git:git@github.com:frtu/SimpleToolbox.git</url>
-		<developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git</developerConnection>
-	  <tag>0.0.4f</tag>
-  </scm>
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus snapshot repository</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Sonatype Nexus release repository</name>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
 
 	<dependencies>
 		<!-- PostConstruct & PreDestroy -->
