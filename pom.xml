@@ -53,6 +53,7 @@
 
 	<modules>
 		<module>SimpleScanner</module>
+		<module>SimpleHelpers</module>
 	</modules>
 
 	<properties>
