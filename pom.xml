@@ -10,7 +10,7 @@
 
 	<groupId>com.github.frtu.simple</groupId>
 	<artifactId>simple-pom</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Simple Toolbox</name>
@@ -29,7 +29,7 @@
 		<url>git@github.com:frtu/SimpleToolbox.git</url>
 		<connection>scm:git:git@github.com:frtu/SimpleToolbox.git</connection>
 		<developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git</developerConnection>
-	  <tag>0.1.0</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<developers>
