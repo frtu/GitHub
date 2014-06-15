@@ -1,4 +1,4 @@
-package com.github.frtu.simple.helpers.object;
+package com.github.frtu.simple.helpers.reflect;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

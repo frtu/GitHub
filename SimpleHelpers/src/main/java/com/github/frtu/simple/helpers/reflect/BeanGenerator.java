@@ -1,4 +1,4 @@
-package com.github.frtu.simple.helpers.object;
+package com.github.frtu.simple.helpers.reflect;
 
 import java.io.IOException;
 import java.io.StringWriter;

@@ -1,4 +1,4 @@
-package com.github.frtu.simple.helpers.object;
+package com.github.frtu.simple.helpers.reflect;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
