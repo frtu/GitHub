@@ -4,14 +4,14 @@
 	<parent>
 		<groupId>com.github.frtu.simple</groupId>
 		<artifactId>simple-pom</artifactId>
-		<version>0.0.8-SNAPSHOT</version>
+		<version>0.1.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>simple-indexer</artifactId>
 	<name>SimpleIndexer</name>
 	<description>Gather the minimum of lib to add Lucene for some simple toolbox</description>
-
+	
 	<dependencies>
 		<!-- commons libs -->
 		<dependency>
