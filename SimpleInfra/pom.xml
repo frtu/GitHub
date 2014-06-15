@@ -8,9 +8,9 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>simple-helpers</artifactId>
-	<name>SimpleHelpers</name>
-	<description>Provide a set of classes that have very few dependencies that you can embedded easily into any application</description>
+	<artifactId>simple-infra</artifactId>
+	<name>SimpleInfrastructure</name>
+	<description>Provide a set of classes for infrastructure and bootstrap that have very few dependencies that you can embedded easily into any application</description>
 
 	<dependencies>
 		<!-- Apache commons -->
@@ -28,7 +28,7 @@
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
+			<artifactId>spring-context</artifactId>
 		</dependency>
 	</dependencies>
 </project>
