@@ -1,10 +1,11 @@
-package org.frtu.simple.catalog;
+package com.github.frtu.simple.catalog;
 
 import java.io.File;
 import java.util.List;
 
-import org.frtu.simple.tika.MusicLoader;
-import org.frtu.simple.tika.model.AudioItem;
+
+import com.github.frtu.simple.tika.MusicLoader;
+import com.github.frtu.simple.tika.model.AudioItem;
 
 public class CatalogBuilder {
 	private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CatalogBuilder.class);

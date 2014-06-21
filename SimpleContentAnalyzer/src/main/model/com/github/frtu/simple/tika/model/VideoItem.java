@@ -1,4 +1,4 @@
-package org.frtu.simple.tika.model;
+package com.github.frtu.simple.tika.model;
 
 import java.io.File;
 

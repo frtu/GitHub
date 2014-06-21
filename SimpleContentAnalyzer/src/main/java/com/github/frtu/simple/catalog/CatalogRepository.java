@@ -1,4 +1,4 @@
-package org.frtu.simple.catalog;
+package com.github.frtu.simple.catalog;
 
 import java.io.File;
 import java.io.PrintStream;
@@ -15,12 +15,13 @@ import lombok.NoArgsConstructor;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
-import org.frtu.simple.lucene.IndexHandler;
-import org.frtu.simple.lucene.LuceneHandlerFactory;
-import org.frtu.simple.lucene.SearchHandler;
-import org.frtu.simple.tika.model.AudioItem;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.LinkedMultiValueMap;
+
+import com.github.frtu.simple.lucene.IndexHandler;
+import com.github.frtu.simple.lucene.LuceneHandlerFactory;
+import com.github.frtu.simple.lucene.SearchHandler;
+import com.github.frtu.simple.tika.model.AudioItem;
 
 @Repository
 @NoArgsConstructor
