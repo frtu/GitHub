@@ -22,7 +22,6 @@
 		<module>SimpleScanner</module>
 		<module>SimpleInfra</module>
 		<module>SimpleIndexer</module>
-		<module>SimpleContentAnalyzer</module>
 	</modules>
 	
 	<licenses>
