@@ -1,4 +1,4 @@
-package com.github.frtu.simple.helpers.jdk;
+package com.github.frtu.simple.infra.jdk;
 
 import java.lang.management.ManagementFactory;
 

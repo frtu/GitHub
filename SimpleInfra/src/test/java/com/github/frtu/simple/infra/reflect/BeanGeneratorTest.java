@@ -1,9 +1,9 @@
-package com.github.frtu.simple.helpers.reflect;
+package com.github.frtu.simple.infra.reflect;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import com.github.frtu.simple.helpers.reflect.BeanGenerator;
+import com.github.frtu.simple.infra.reflect.BeanGenerator;
 
 public class BeanGeneratorTest {
     @Test
