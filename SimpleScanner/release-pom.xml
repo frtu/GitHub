@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.frtu.simple</groupId>
   <artifactId>simple-scan</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <name>SimpleScanner</name>
   <description>Gather the minimum of lib to add Directory scan for some simple toolbox</description>
   <url>https://github.com/frtu/SimpleToolbox/simple-scan/</url>
@@ -39,6 +39,7 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
+    <lucene.version>4.0.0</lucene.version>
     <commons-io.version>2.4</commons-io.version>
     <slf4j.version>1.7.5</slf4j.version>
     <junit.version>4.11</junit.version>
@@ -152,7 +153,6 @@
       </testResource>
     </testResources>
     <directory>target</directory>
-    <finalName>simple-scan-0.1.0</finalName>
   </build>
   <reporting>
     <outputDirectory>target/site</outputDirectory>

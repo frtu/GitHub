@@ -3,11 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.frtu.simple</groupId>
-  <artifactId>simple-infra</artifactId>
+  <artifactId>simple-indexer</artifactId>
   <version>0.2.0</version>
-  <name>SimpleInfrastructure</name>
-  <description>Provide a set of classes for infrastructure and bootstrap that have very few dependencies that you can embedded easily into any application</description>
-  <url>https://github.com/frtu/SimpleToolbox/simple-infra/</url>
+  <name>SimpleIndexer</name>
+  <description>Gather the minimum of lib to add Lucene for some simple toolbox</description>
+  <url>https://github.com/frtu/SimpleToolbox/simple-indexer/</url>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -22,9 +22,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:git@github.com:frtu/SimpleToolbox.git/simple-infra</connection>
-    <developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git/simple-infra</developerConnection>
-    <url>git@github.com:frtu/SimpleToolbox.git/simple-infra</url>
+    <connection>scm:git:git@github.com:frtu/SimpleToolbox.git/simple-indexer</connection>
+    <developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git/simple-indexer</developerConnection>
+    <url>git@github.com:frtu/SimpleToolbox.git/simple-indexer</url>
   </scm>
   <distributionManagement>
     <repository>
@@ -54,12 +54,6 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>aopalliance</groupId>
-      <artifactId>aopalliance</artifactId>
-      <version>1.0</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.0.13</version>
@@ -70,6 +64,18 @@
       <artifactId>logback-core</artifactId>
       <version>1.0.13</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta-regexp</groupId>
+      <artifactId>jakarta-regexp</artifactId>
+      <version>1.4</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>javax.annotation</groupId>
@@ -84,21 +90,39 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.3.2</version>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-common</artifactId>
+      <version>4.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-core-asl</artifactId>
-      <version>1.9.9</version>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>4.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-mapper-asl</artifactId>
-      <version>1.9.9</version>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-facet</artifactId>
+      <version>4.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-queries</artifactId>
+      <version>4.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-queryparser</artifactId>
+      <version>4.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-sandbox</artifactId>
+      <version>4.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -118,42 +142,6 @@
       <artifactId>slf4j-api</artifactId>
       <version>1.7.5</version>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aop</artifactId>
-      <version>3.1.0.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-asm</artifactId>
-      <version>3.1.0.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>3.1.0.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>3.1.0.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>3.1.0.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-expression</artifactId>
-      <version>3.1.0.RELEASE</version>
-      <scope>compile</scope>
     </dependency>
   </dependencies>
   <repositories>
@@ -192,7 +180,7 @@
   </pluginRepositories>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
-    <scriptSourceDirectory>C:\data\GitHub\SimpleToolbox\SimpleInfra\src\main\scripts</scriptSourceDirectory>
+    <scriptSourceDirectory>C:\data\GitHub\SimpleToolbox\SimpleIndexer\src\main\scripts</scriptSourceDirectory>
     <testSourceDirectory>src/test/java</testSourceDirectory>
     <outputDirectory>target/classes</outputDirectory>
     <testOutputDirectory>target/test-classes</testOutputDirectory>
