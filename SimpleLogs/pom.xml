@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.github.frtu.simple</groupId>
 		<artifactId>simple-pom</artifactId>
-		<version>0.2.0-SNAPSHOT</version>
+		<version>0.2.0-logs</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
