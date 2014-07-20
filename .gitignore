@@ -1,5 +1,5 @@
 *.versionsBackup
-release-pom.xml
+# release-pom.xml
 
 #################
 ## Eclipse
