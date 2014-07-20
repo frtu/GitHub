@@ -21,6 +21,7 @@
 		<module>SimpleScanner</module>
 		<module>SimpleInfra</module>
 		<module>SimpleIndexer</module>
+		<module>SimpleLogs</module>
 	</modules>
 	
 	<licenses>
@@ -77,27 +78,10 @@
 	</properties>
 
 	<dependencies>
-		<!-- PostConstruct & PreDestroy -->
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>jsr250-api</artifactId>
-			<version>${jsr250.version}</version>
-		</dependency>
-
 		<!-- Logs -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
