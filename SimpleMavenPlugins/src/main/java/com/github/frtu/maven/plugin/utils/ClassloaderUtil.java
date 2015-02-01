@@ -8,11 +8,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.slf4j.Logger;
 import org.springframework.util.ClassUtils;
 
 public class ClassloaderUtil {
-    public static void initMavenWithCompileClassloader(List<String> classpathElements, Logger logger) {
+	private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ClassloaderUtil.class);
+	
+    public static void initMavenWithCompileClassloader(List<String> classpathElements) {
         try {
             Set<URL> urls = new HashSet<URL>();
             for (String element : classpathElements) {
