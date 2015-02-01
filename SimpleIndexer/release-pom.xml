@@ -3,11 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.frtu.simple</groupId>
-  <artifactId>simple-logs</artifactId>
+  <artifactId>simple-indexer</artifactId>
   <version>0.2.1</version>
-  <name>SimpleLogs</name>
-  <description>Provide a set of classes for log bridge that have very few dependencies that you can embedded easily into any application</description>
-  <url>https://github.com/frtu/SimpleToolbox/simple-logs/</url>
+  <name>SimpleIndexer</name>
+  <description>Gather the minimum of lib to add Lucene for some simple toolbox</description>
+  <url>https://github.com/frtu/SimpleToolbox/simple-indexer/</url>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -22,9 +22,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:git@github.com:frtu/SimpleToolbox.git/simple-logs</connection>
-    <developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git/simple-logs</developerConnection>
-    <url>git@github.com:frtu/SimpleToolbox.git/simple-logs</url>
+    <connection>scm:git:git@github.com:frtu/SimpleToolbox.git/simple-indexer</connection>
+    <developerConnection>scm:git:git@github.com:frtu/SimpleToolbox.git/simple-indexer</developerConnection>
+    <url>git@github.com:frtu/SimpleToolbox.git/simple-indexer</url>
   </scm>
   <distributionManagement>
     <repository>
@@ -54,10 +54,58 @@
   </properties>
   <dependencies>
     <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta-regexp</groupId>
+      <artifactId>jakarta-regexp</artifactId>
+      <version>1.4</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-common</artifactId>
+      <version>4.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>4.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-facet</artifactId>
+      <version>4.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-queries</artifactId>
+      <version>4.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-queryparser</artifactId>
+      <version>4.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-sandbox</artifactId>
+      <version>4.0.0</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.hamcrest</groupId>
@@ -108,7 +156,7 @@
   </pluginRepositories>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
-    <scriptSourceDirectory>C:\data\GitHub\SimpleToolbox\SimpleLogs\src\main\scripts</scriptSourceDirectory>
+    <scriptSourceDirectory>C:\data\GitHub\SimpleToolbox\SimpleIndexer\src\main\scripts</scriptSourceDirectory>
     <testSourceDirectory>src/test/java</testSourceDirectory>
     <outputDirectory>target/classes</outputDirectory>
     <testOutputDirectory>target/test-classes</testOutputDirectory>
