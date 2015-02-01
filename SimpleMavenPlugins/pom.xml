@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>simple-maven-plugins</artifactId>
-    <name>SimpleInfrastructure</name>
+    <name>SimpleMavenPlugins</name>
     <description>Provide a set of classes for creating maven plugins</description>
 
     <dependencies>
