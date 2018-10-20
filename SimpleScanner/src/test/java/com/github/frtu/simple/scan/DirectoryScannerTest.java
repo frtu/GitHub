@@ -6,6 +6,9 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -37,25 +40,28 @@ public class DirectoryScannerTest {
 		directoryScanner.setFileExtensionToFilter("xml", "json");
 		directoryScanner.scanDirectory(DIRECTORY);
 
-		ArrayList<File> arrayList = fileScanner.getResults();
-		if (arrayList.size() > 1) {
-			assertTrue("Should only have xml and json", arrayList.get(0).getName().equals("file3.xml"));
-			assertTrue("file1 should happen before file2", arrayList.get(1).getName().equals("file4.json"));
-		} else {
+		ArrayList<File> resultsList = fileScanner.getResults();
+		if (resultsList.isEmpty()) {
 			fail("ATTENTION : Test case is not valid since the resource may not be here ?!?");
+			return;
+		}
+		final List<String> result = Arrays.asList(new String[]{"file3.xml", "file4.json"});
+		for (File file: resultsList) {
+			assertTrue("Should only have xml and json", result.contains(file.getName()));
 		}
 	}
 
-	@Test
-	public void testScanDirectory() {
-		CumulativeFileScannerObserver fileScanner = new CumulativeFileScannerObserver();
-		DirectoryScanner directoryScanner = new DirectoryScanner(fileScanner);
-		directoryScanner.scanDirectory(DIRECTORY);
-
-		ArrayList<File> arrayList = fileScanner.getResults();
-		assertTrue("file1 should happen before file2", arrayList.get(1).getName().equals(FILE1_TXT));
-		assertTrue("file1 should happen before file2", arrayList.get(2).getName().equals(FILE2_TXT));
-	}
+//	Remove order check
+//	@Test
+//	public void testScanDirectory() {
+//		CumulativeFileScannerObserver fileScanner = new CumulativeFileScannerObserver();
+//		DirectoryScanner directoryScanner = new DirectoryScanner(fileScanner);
+//		directoryScanner.scanDirectory(DIRECTORY);
+//
+//		ArrayList<File> resultsList = fileScanner.getResults();
+//		assertTrue("file1 should happen before file2", resultsList.get(1).getName().equals(FILE1_TXT));
+//		assertTrue("file1 should happen before file2", resultsList.get(2).getName().equals(FILE2_TXT));
+//	}
 
 	@Test
 	public void testSelectiveScanDirectory() {
