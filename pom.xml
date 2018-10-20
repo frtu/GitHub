@@ -72,7 +72,10 @@
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>2.4</commons-io.version>
 
-		<spring.version>4.3.17</spring.version>
+        <!-- FIX https://nvd.nist.gov/vuln/detail/CVE-2018-11040 -->
+        <!-- FIX https://nvd.nist.gov/vuln/detail/CVE-2018-11039 -->
+        <spring.version>4.3.18</spring.version>
+        
 		<org.codehaus.jackson.version>1.9.9</org.codehaus.jackson.version>
 
 		<lucene.version>4.0.0</lucene.version>
