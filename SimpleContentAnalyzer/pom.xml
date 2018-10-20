@@ -14,7 +14,8 @@
 
 	<properties>
 		<commons-codec.version>1.7</commons-codec.version>
-		<commons-compress.version>1.7</commons-compress.version>
+		<!-- https://nvd.nist.gov/vuln/detail/CVE-2018-11771 -->
+		<commons-compress.version>1.18</commons-compress.version>
 
 		<tika.version>1.4</tika.version>
 		<!-- <solr.version>4.7.0</solr.version> -->
